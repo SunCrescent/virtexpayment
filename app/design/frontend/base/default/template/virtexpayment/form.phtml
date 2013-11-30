@@ -1,0 +1,122 @@
+<?php
+/**
+ * SunCrescent VirtExPayment Extension
+ * Copyright (C) 2013  Stefan Graf
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+?>
+
+<div class="virtexpayment-container">
+
+    <h1>Bitcoin payment</h1>
+
+    <div class="virtexpayment-instructions">
+        <p><?php echo $this->__('You current balance was converted to bitcoins using the current exchange rate of $%s', $this->getExchangeRate()); ?></p>
+        <p>
+            <?php echo $this->__('Please send <span class="virtexpayment-price">%s BTC</span> to address <span class="virtexpayment-address">%s</span> to complete your order.', $this->getBtcAmount(), $this->getBtcAddress()); ?>
+        </p>
+        <p><?php echo $this->__('You have until %s to complete your payment.', $this->getExpiration()); ?></p>
+    </div>
+
+    <div id="virtexpayment-status" class="virtexpayment-status">
+        <p><?php echo $this->__('Order status'); ?>:
+            <span id="virtexpayment-status-text"><?php echo $this->__('Loading'); ?></span>
+        </p>
+        <p><?php echo $this->__('Time remaining'); ?>:
+            <span id="virtexpayment-status-time">...</span>
+        </p>
+    </div>
+
+    <?php if ($this->isApiCallSuccessful()): ?>
+        <?php if ($this->getQrCode()): ?>
+        <div class="virtexpayment-qrcode">
+            <img src="<?php echo Mage::getBaseUrl('media') . '/virtexpayment/' . $this->getQrCode() ?>"/>
+        </div>
+    <?php endif; ?>
+
+        <div class="virtexpayment-important"><?php echo $this->__('After the funds have been sent it may take several minutes to process the transaction.', $this->getExpiration()); ?></div>
+
+        <div id="virtexpayment-error" class="virtexpayment-error" style="display:none">
+            <p><?php echo $this->__('Your payment was not received on time.'); ?></p>
+            <p><a href="<?php echo Mage::getUrl(''); ?>"><?php echo $this->__('Return to home page'); ?></a></p>
+        </div>
+
+        <script type="text/javascript">
+
+            var complete = false;
+
+            var statusTexts = {
+                'received': '<?php echo $this->__('Pending');?>',
+                'paid': '<?php echo $this->__('Paid');?>',
+                'expired': '<?php echo $this->__('Expired');?>',
+                'credited': '<?php echo $this->__('Partially Paid');?>'
+            };
+
+            function checkPayment() {
+                if (!complete) {
+                    new Ajax.Request('<?php echo Mage::getUrl('virtex/api/status');?>', {
+                        'method': 'get',
+                        onSuccess: function (response) {
+                            var data = response.responseJSON;
+                            updateStatus(data.status, data.time_left);
+                            switch (data.status) {
+                                case 'received':
+                                    // nothing to do
+                                    break;
+                                case 'paid':
+                                    complete = true;
+                                    orderSuccess();
+                                    break;
+                                case 'expired':
+                                    complete = true;
+                                    orderCancel();
+                                    break;
+                                case 'credited':
+                                    // nothing to do
+                                    break;
+                            }
+                        }
+                    });
+                    setTimeout(checkPayment, 5000);
+                }
+            }
+
+            function updateStatus(status, time) {
+                $('virtexpayment-status-text').update(statusTexts[status]);
+                $('virtexpayment-status-time').update(Math.round(time) + 's');
+            }
+
+            function orderCancel() {
+                $('virtexpayment-error').show();
+            }
+
+            function orderSuccess() {
+                window.location.href = '<?php echo Mage::getUrl('checkout/onepage/success');?>';
+            }
+
+            setTimeout(checkPayment, 100);
+
+        </script>
+
+    <?php else: ?>
+
+        <div class="virtexpayment-error">
+            <p><?php echo $this->__('An error occurred during the payment process. Please try again later.'); ?></p>
+            <p><a href="<?php echo Mage::getUrl(''); ?>"><?php echo $this->__('Return to home page'); ?></a></p>
+        </div>
+
+    <?php endif; ?>
+
+</div>

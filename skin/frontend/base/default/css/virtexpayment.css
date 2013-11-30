@@ -1,0 +1,68 @@
+/**
+ * SunCrescent VirtExPayment Extension
+ * Copyright (C) 2013  Stefan Graf
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+
+.virtexpayment-qrcode {
+    float: left;
+    width: 150px;
+    text-align: center;
+    margin-left: 20px;
+}
+
+.virtexpayment-instructions {
+    float: left;
+    width: 500px;
+    font-size: 13px;
+}
+
+.virtexpayment-status {
+    float: right;
+    width: 170px;
+    font-weight: bold;
+}
+
+.virtexpayment-error {
+    float: left;
+    clear: both;
+    font-size: 15px;
+    margin: 30px 25%;
+    font-weight: bold;
+}
+
+.virtexpayment-price {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.virtexpayment-address {
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Menlo, Consolas, "Lucida Console", Monospace;
+}
+
+.virtexpayment-important {
+    clear: left;
+    float:left;
+    font-weight: bold;
+    color: #444;
+    border: 1px dotted #666;
+    background-color: #efefef;
+    border-left: none;
+    border-right: none;
+    padding: 3px 10px;
+    margin: 20px 0;
+}

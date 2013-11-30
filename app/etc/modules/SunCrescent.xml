@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <SunCrescent_VirtExPayment>
+            <active>true</active>
+            <codePool>community</codePool>
+        </SunCrescent_VirtExPayment>
+    </modules>
+</config>

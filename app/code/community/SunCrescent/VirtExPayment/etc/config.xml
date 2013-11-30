@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * SunCrescent VirtExPayment Extension
+ * Copyright (C) 2013  Stefan Graf
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+-->
+<config>
+    <modules>
+        <SunCrescent_VirtExPayment>
+            <version>1.0.0.0</version>
+            <depends>
+                <Mage_Payment/>
+            </depends>
+        </SunCrescent_VirtExPayment>
+    </modules>
+    <global>
+        <models>
+            <virtexpayment>
+                <class>SunCrescent_VirtExPayment_Model</class>
+            </virtexpayment>
+        </models>
+        <blocks>
+            <virtexpayment>
+                <class>SunCrescent_VirtExPayment_Block</class>
+            </virtexpayment>
+        </blocks>
+        <helpers>
+            <virtexpayment>
+                <class>SunCrescent_VirtExPayment_Helper</class>
+            </virtexpayment>
+        </helpers>
+        <payment>
+            <groups>
+                <virtexpayment>VirtEx Merchant API</virtexpayment>
+            </groups>
+        </payment>
+    </global>
+    <frontend>
+        <routers>
+            <virtexpayment>
+                <use>standard</use>
+                <args>
+                    <module>SunCrescent_VirtExPayment</module>
+                    <frontName>virtex</frontName>
+                </args>
+            </virtexpayment>
+        </routers>
+        <translate>
+            <modules>
+                <SunCrescent_VirtExPayment>
+                    <files>
+                        <default>SunCrescent_VirtExPayment.csv</default>
+                    </files>
+                </SunCrescent_VirtExPayment>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <virtexpayment>
+                    <file>virtexpayment.xml</file>
+                </virtexpayment>
+            </updates>
+        </layout>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <SunCrescent_VirtExPayment>
+                    <files>
+                        <default>SunCrescent_VirtExPayment.csv</default>
+                    </files>
+                </SunCrescent_VirtExPayment>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        <payment>
+            <virtexpayment>
+                <model>virtexpayment/method</model>
+                <active>1</active>
+                <title>VirtEx Bitcoin Payment</title>
+                <group>virtexpayment</group>
+                <qrcode>1</qrcode>
+                <autocancel>1</autocancel>
+                <autoinvoice>1</autoinvoice>
+                <payment_action>order</payment_action>
+                <sort_order>1</sort_order>
+            </virtexpayment>
+        </payment>
+    </default>
+</config>
