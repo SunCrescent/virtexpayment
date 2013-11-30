@@ -1,7 +1,7 @@
 VirtEx Bitcoin Payment API Magento Extension
 ============================================
 
-Magento Virtex Payment Gateway Module. Allows Magento website to accept payments in Bitcoin currency. Mostly functionnal needs to be tested (a lot) more. Currently tested on Magento 1.7 and 1.8. Its very hard to test the module since the VirtEx API is very unstable at the moment (changes are made without notifying us and doc isn't updated).
+Magento Virtex Payment Gateway Module. Allows Magento website to accept payments in Bitcoin currency. Mostly functionnal needs to be tested (a lot) more. Currently tested on Magento 1.7 and 1.8. Its very hard to test the module since the VirtEx API is very unstable at the moment (changes are made without notifying developers and documentation isn't updated).
 
 This extension requires a merchant account with VirtEx http://www.cavirtex.com/
 
@@ -11,19 +11,20 @@ Prices for your products remain in fiat currency (canadian dollars). During chec
 
 Features
 --------
-- Fully cusomizable CSS style sheet included.
-- Fully translatable (french and english included).
-- Realtime order payment form.
+- Realtime order payment form with expiration count-down.
 - QR Code generation for payment form. Customers can pay with their phone which is extremely convenient
 - IPN validation of total btc amount received in your account.
 - Order statuses updated depending on payment status.
 - Automatic invoice generation for paid orders
 - Customer email notification on payment confirmation
+- Fully cusomizable CSS style sheet included.
+- Fully translatable (French and English translatios included).
 - Tested on Magento CE 1.7, 1.8
 
 Screenshots
 -----------
-![alt text](http://static.suncrescent.net/sc/Image20131130_001.png)
+![Payment Page](http://static.suncrescent.net/sc/Image20131130_001.png)
+![Admin Configuration](http://static.suncrescent.net/sc/Image20131130_002.png)
 
 
 Installation
@@ -36,11 +37,14 @@ Required information:
 
 Instructions:
 
-1. Download the code (download as zip)
-2. Upload all files to your Magento installation.
-3. Login to your backend
-4. Reset the cache to load the extension
-5. Under System->Payment Method->VirExt Pay
+1. Download the code (download as zip on the right -->)
+2. Upload all files to your Magento installation root folder.
+3. Login to your backend.
+4. Reset the cache to load the extension. (System->Cache Management)
+5. Go to system configuration (System->Configuration)
+6. Locate the payment module under Payment Methods->VirExt Merchant API
+7. Enable the module
+8. Configure your API keys
 
 
 Known Issues
