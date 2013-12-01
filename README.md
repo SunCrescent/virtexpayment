@@ -7,7 +7,7 @@ This extension requires a merchant account with VirtEx http://www.cavirtex.com/
 
 How does it work?
 -----------------
-Prices for your products remain in fiat currency (canadian dollars). During checkout, the order's balance in $CA is converted to Bitcoins using the curent exchange rate. Your customers will be instructed to send a BTC payment to a special receiving address linked to your merchant account. Once the payment is received, Magento will complete the checkout process.
+Prices for your products remain in fiat currency (canadian dollars only). During checkout, the order's balance in $CA is converted to Bitcoins using the curent exchange rate. Your customers will be instructed to send a BTC payment to a special receiving address linked to your merchant account. Once the payment is received, Magento will complete the checkout process.
 
 Features
 --------
