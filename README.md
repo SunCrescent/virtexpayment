@@ -56,9 +56,11 @@ Instructions:
 6. Locate the payment module under Payment Methods->VirExt Merchant API
 7. Enable the module
 8. Configure your API keys
+9. Login to your VirtEx merchant admin and set the IPN url to <em>https://www.domain.com<strong>/virtex/api/ipn</strong></em><br/>(use http://... if you don't have an SSL setup)
+
 
 
 Known Issues
 ------------
-- The VirEx API seems to have some rounding issues with very low amounts (under 0.0001) of BTC which impacts payments made through the API.
+- The VirEx API seems to have some rounding issues with very low amounts of BTC (less than 0.0001) which impacts payments made through the API.
 - It seems like the API's IPN validation always fails at the moment.
