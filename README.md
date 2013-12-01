@@ -12,7 +12,7 @@ Prices for your products remain in fiat currency (canadian dollars). During chec
 Features
 --------
 - Realtime order payment form with expiration count-down.
-- QR Code generation for payment form. Customers can pay with their phone which is extremely convenient
+- QR Code generation for payment form. Customers can pay with their wallet apps which is extremely convenient
 - IPN validation of total btc amount received in your account.
 - Order statuses updated depending on payment status.
 - Automatic invoice generation for paid orders
@@ -24,11 +24,18 @@ Features
 Screenshots
 -----------
 
-Payment Page
-![Payment Page](http://static.suncrescent.net/sc/Image20131130_001.png)
 
-Admin Settings
-![Admin Configuration](http://static.suncrescent.net/sc/Image20131130_002.png)
+
+<dl>
+<dt>Payment Page</dt>
+<dd>
+<img src="http://static.suncrescent.net/sc/Image20131130_001.png"/>
+</dd>
+<dt>Admin Settings</dt>
+<dd>
+<img src="http://static.suncrescent.net/sc/Image20131130_002.png"/>
+</dd>
+</dl>
 
 
 Installation
