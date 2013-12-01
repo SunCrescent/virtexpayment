@@ -23,7 +23,11 @@ Features
 
 Screenshots
 -----------
+
+Payment Page
 ![Payment Page](http://static.suncrescent.net/sc/Image20131130_001.png)
+
+Admin Settings
 ![Admin Configuration](http://static.suncrescent.net/sc/Image20131130_002.png)
 
 
@@ -49,7 +53,5 @@ Instructions:
 
 Known Issues
 ------------
-- There appears to be some MAJOR rounding issues with low amounts of BTC int VirEx API which breaks payment modules.
-- The VirtEX  API's validation functions return invalid responses for very low amounts of BTC.
-- Very low balances (below 1$) are most likely to have issues.
-- It seems the IPN validation always fails at the moment. (VirtExt API issue?)
+- The VirEx API seems to have some rounding issues with very low amounts (under 0.0001) of BTC which impacts payments made through the API.
+- It seems like the API's IPN validation always fails at the moment.
