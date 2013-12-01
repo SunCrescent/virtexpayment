@@ -126,9 +126,11 @@ class SunCrescent_VirtExPayment_ApiController extends Mage_Core_Controller_Front
      */
     public function ipnAction()
     {
+        // -- IPN CALL VALIDATION DISABLED FOR NOW UNTIL API WORKS --
+        return;
+
         // json request data from post
         $data = json_decode($this->getRequest()->getRawBody(), true);
-
 
         if (!$data) {
             error_log("json invalid");
@@ -154,24 +156,22 @@ class SunCrescent_VirtExPayment_ApiController extends Mage_Core_Controller_Front
                 $secretKey = Mage::helper('core')->decrypt(Mage::getModel('virtexpayment/method')->getConfigData('secret_key'));
                 $data['secret_key'] = $secretKey;
 
-                // error_log("confirm ipn with data: " . print_r($data, true));
+                // error_log("confirming ipn with data: " . print_r($data, true));
 
                 $response = Mage::helper('virtexpayment/api')->callMerchantConfirmIpn($data);
 
-                // error_log("confirm ipn call response: " . print_r($response, true));
+                // error_log("response: " . print_r($response, true));
 
-                // -- IPN CALL VALIDATION DISABLED FOR NOW UNTIL API WORKS, WE STILL CHECK THE TOTAL AMOUNT ABOVE --
+                // validate ipn response
+                if (is_array($response) && isset($response['status']) && $response['status'] != 'error') {
 
-                // validate ipn
-                // if (is_array($response) && isset($response['status']) && $response['status'] != 'error') {
+                    // load order based on payment
+                    $order = Mage::getModel('sales/order')->load($orderPayment->getParentId());
 
-                // load order
-                $order = Mage::getModel('sales/order')->load($orderPayment->getParentId());
-
-                if ($order->getId()) {
-                    $this->_confirmOrder($order);
+                    if ($order->getId()) {
+                        $this->_confirmOrder($order);
+                    }
                 }
-                // }
             }
         }
     }
